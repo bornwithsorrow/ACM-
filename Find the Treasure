@@ -1,0 +1,107 @@
+#include <iostream>
+
+enum Dir
+{
+	UP,DOWN,LEFT,RIGHT
+};
+int main()
+{
+	char way; 
+	int distance = 0;
+	Dir dir = UP;
+	long long x = 0, y = 0;
+	while (std::cin>>way)
+	{
+		if (way == 'F')
+		{
+			goto End;
+		}
+		switch (way)
+		{
+		case 'W':
+			std::cin >> distance;
+			switch (dir)
+			{
+			case UP:
+				y += distance;
+				break;
+			case DOWN:
+				y -= distance;
+				break;
+			case LEFT:
+				x -= distance;
+				break;
+			case RIGHT:
+				x += distance;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 'S':
+			std::cin >> distance;
+			switch (dir)
+			{
+			case UP:
+				dir = DOWN;
+				y -= distance;
+				break;
+			case DOWN:
+				dir = UP;
+				y += distance;
+				break;
+			case LEFT:
+				dir = RIGHT;
+				x += distance;
+				break;
+			case RIGHT:
+				dir = LEFT;
+				x -= distance;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 'A':
+			switch (dir)
+			{
+			case UP:
+				dir = LEFT;
+				break;
+			case DOWN:
+				dir = RIGHT;
+				break;
+			case LEFT:
+				dir = DOWN;
+				break;
+			case RIGHT:
+				dir = UP;
+				break;
+			default:
+				break;
+			}
+			break;
+		case 'D':
+			switch (dir)
+			{
+			case UP:
+				dir = RIGHT;
+				break;
+			case DOWN:
+				dir = LEFT;
+				break;
+			case LEFT:
+				dir = UP;
+				break;
+			case RIGHT:
+				dir = DOWN;
+				break;
+			default:
+				break;
+			}
+			break;
+		}
+	}
+	End:
+	std::cout << x << " " << y;
+}
